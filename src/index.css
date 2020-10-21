@@ -1,13 +1,73 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.content {
+  margin-top: 20px;
+  
+}
+
+#board {
+  position: relative;
+  margin: 0 auto;
+  width: 1024px;
+  height: 863px;
+  background: url("./assest/board.jpg") no-repeat center;
+}
+
+.messageArea {
+  position: absolute;
+  color: rgb(83, 175, 19);
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.fire {
+  position: absolute;
+  border: 1px;
+  padding: 8px;
+  right: 0;
+  bottom: 0;
+  display: inline;
+  background-color: rgb(83, 175, 19);
+  font-size: 20px;
+}
+
+.fire button {
+  margin-left: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.fire button:hover {
+  cursor: pointer;
+  box-shadow: inset;
+}
+
+.fire input {
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+table {
+  position: absolute;
+  left: 173px;
+  top: 98px;
+  border-spacing: 0px;
+}
+
+td {
+  width: 94px;
+  height: 94px;
+}
+
+.miss {
+  background: url("./assest/miss.png") no-repeat center center;
+}
+
+.hit {
+  background: url("./assest/ship.png") no-repeat center center;
 }

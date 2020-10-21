@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import Models from "./models";
+
+window.onload = Models.init();
 
 function App() {
 

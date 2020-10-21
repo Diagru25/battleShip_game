@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 const model = {
     sizeBoard: 7,
     numShip: 3,
@@ -5,9 +6,9 @@ const model = {
     shipSunk: 0,
     guesses: 0,
     ships: [
-        { positions: ["10", "20", "30"], hit: ["", "", ""] },
-        { positions: ["11", "21", "31"], hit: ["", "", ""] },
-        { positions: ["12", "22", "32"], hit: ["", "", ""] }
+        { positions: [], hit: ["", "", ""] },
+        { positions: [], hit: ["", "", ""] },
+        { positions: [], hit: ["", "", ""] }
     ],
     displayMessage: function (content) {
         let area = document.getElementsByClassName("messageArea");
@@ -93,6 +94,52 @@ const model = {
                 this.displayMessage("You sunk all my battleShip in " + this.guesses + " guesses!");
             }
         }
+    },
+    generateShip: function () {
+        let direction = Math.floor(Math.random() * 2);
+        let row, col;
+        let location = [];
+
+        if (direction === 1) {
+            row = Math.floor(Math.random() * (this.sizeBoard - 3));
+            col = Math.floor(Math.random() * this.sizeBoard);
+        }
+        else {
+            col = Math.floor(Math.random() * (this.sizeBoard - 3));
+            row = Math.floor(Math.random() * this.sizeBoard);
+        }
+
+        for (var i = 0; i < this.shipLength; i++) {
+            if (direction === 1) {
+                location.push("" + row + (col + i));
+            }
+            else {
+                location.push("" + (row + i) + col)
+            }
+        }
+        return location;
+    },
+    collision: function (locations) {
+        for (var i = 0; i < this.numShip; i++) {
+            for (var j = 0; j < locations.length; j++) {
+                if(this.ships[i].positions.indexOf(locations[j]) >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
+    init: function () {
+        let locations;
+        for (var i = 0; i < this.numShip; i++) {
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations)) {
+                locations = this.generateShip();
+            }
+            this.ships[i].positions = locations;
+        }
+        console.log("all ship: ", this.ships);
     }
 };
 
